@@ -5,7 +5,7 @@ class Spree::ContactUs::ContactsController < Spree::StoreController
 
     if NewGoogleRecaptcha.human?(
       params[:new_google_recaptcha_token],
-      "checkout",
+      "contact",
       NewGoogleRecaptcha.minimum_score,
       @contact
     ) && @contact.save
