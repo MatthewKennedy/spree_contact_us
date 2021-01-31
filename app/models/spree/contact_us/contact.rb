@@ -16,11 +16,11 @@ module Spree
         [^\s.@] # non-at-sign and non-period character
       \z/x.freeze
 
-      validates :email,   presence: true
-      validates :email,   format: { with: EMAIL_REGEX }, if: -> { email.present? }
+      validates :email, presence: true
+      validates :email, format: {with: EMAIL_REGEX}, if: -> { email.present? }
       validates :message, presence: true
-      validates :name,    presence: { if: proc { SpreeContactUs.require_name } }
-      validates :subject, presence: { if: proc { SpreeContactUs.require_subject } }
+      validates :name, presence: {if: proc { SpreeContactUs.require_name }}
+      validates :subject, presence: {if: proc { SpreeContactUs.require_subject }}
 
       def initialize(attributes = {})
         %i[email message name subject].each do |attribute|

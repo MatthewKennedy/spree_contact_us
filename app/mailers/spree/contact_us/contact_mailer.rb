@@ -2,9 +2,9 @@ class Spree::ContactUs::ContactMailer < Spree::BaseMailer
   def contact_email(contact)
     @contact = contact
 
-    mail from: (SpreeContactUs.mailer_from || @contact.email),
+    mail from: from_address,
          reply_to: @contact.email,
          subject: (SpreeContactUs.require_subject ? @contact.subject : Spree.t(:subject, email: @contact.email)),
-         to: SpreeContactUs.mailer_to
+         to: current_store.customer_support_email || from_address
   end
 end
