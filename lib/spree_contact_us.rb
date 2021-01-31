@@ -1,8 +1,8 @@
-require 'spree_core'
-require 'spree_contact_us/engine'
+require "new_google_recaptcha"
+require "spree_core"
+require "spree_contact_us/engine"
 
 module SpreeContactUs
-
   # Address ContactUs email notifications are sent from.
   mattr_accessor :mailer_from
 

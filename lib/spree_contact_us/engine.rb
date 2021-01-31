@@ -1,13 +1,11 @@
 module SpreeContactUs
   class Engine < Rails::Engine
-    engine_name 'spree_contact_us'
+    engine_name "spree_contact_us"
 
     config.autoload_paths += %W[#{config.root}/lib]
 
-    initializer 'spree.contact_us.preferences', after: 'spree.environment' do
-      module Spree::ContactUs
-        Config = Spree::ContactUsConfiguration.new
-      end
+    initializer "spree.contact_us.preferences", after: "spree.environment" do
+      Spree::ContactUs::Config = Spree::ContactUsConfiguration.new
     end
 
     # use rspec for tests
