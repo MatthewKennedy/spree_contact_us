@@ -1,6 +1,8 @@
-<%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
-<%= current_store.customer_support_email %>
+<%= content_for :recaptcha_js do %>
+  <%= include_recaptcha_js %>
+<% end %>
 
+<%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
 <div class="container">
   <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
     <% if SpreeContactUs.require_name %>
@@ -22,5 +24,6 @@
             title: Spree.t(:send),
             class: 'btn btn-primary text-uppercase' %>
     </div>
+    <%= recaptcha_action('contact') %>
   <% end %>
 </div>
