@@ -10,24 +10,32 @@
 
 <div class="container">
   <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
-    <% if SpreeContactUs.require_name %>
-      <%= f.text_field :name, class: 'required col-12 mt-3 mb-1 mb-lg-2', placeholder: true %>
-    <% end %>
+    <div class="form-group">
+      <% if SpreeContactUs.require_name %>
+        <%= f.text_field :name, class: 'form-control', required: true, placeholder: true %>
+      <% end %>
+    </div>
 
-    <%= f.email_field :email, class: 'required col-12 mt-3 mb-1 mb-lg-2', placeholder: true %>
+    <div class="form-group">
+      <%= f.email_field :email, class: 'form-control', required: true, placeholder: true %>
+    </div>
 
-    <% if SpreeContactUs.require_subject %>
-      <%= f.text_field :subject, class: 'required col-12 mt-3 mb-1 mb-lg-2' %>
-    <% end %>
+    <div class="form-group">
+      <% if SpreeContactUs.require_subject %>
+        <%= f.text_field :subject, class: 'form-control', required: true %>
+      <% end %>
+    </div>
 
-    <%= f.text_area :message, class: 'required col-12 mt-3 mb-3', rows: 4, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
+    <div class="form-group">
+      <%= f.text_area :message, class: 'form-control', rows: 4, required: true, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
+    </div>
 
     <div class="text-center text-lg-left mt-lg-1 mb-4">
       <%= f.submit Spree.t(:send),
             alt: Spree.t(:send),
             id: 'contact_us_contact_submit',
             title: Spree.t(:send),
-            class: 'btn btn-primary text-uppercase' %>
+            class: 'btn btn-secondary' %>
     </div>
     <%= recaptcha_action('contact') %>
   <% end %>
