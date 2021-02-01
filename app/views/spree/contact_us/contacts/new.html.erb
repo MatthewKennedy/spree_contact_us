@@ -1,7 +1,3 @@
-<%= content_for :recaptcha_js do %>
-  <%= include_recaptcha_js %>
-<% end %>
-
 <%= content_for :head do %>
   <meta name='turbolinks-visit-control' content='reload'>
 <% end %>
@@ -32,34 +28,40 @@
         </div>
       <% end %>
     </div>
-    <div class="col-12 col-md-8">
-      <h3><%= Spree.t('contact_us') %></h3>
-      <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
-        <div class="form-group">
-          <% if SpreeContactUs.require_name %>
-            <%= f.text_field :name, class: 'form-control', required: true, placeholder: true %>
-          <% end %>
-        </div>
+    <% if current_store.customer_support_email %>
+      <div class="col-12 col-md-8">
+        <h3><%= Spree.t('contact_us') %></h3>
+        <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
+          <div class="form-group">
+            <% if SpreeContactUs.require_name %>
+              <%= f.text_field :name, class: 'form-control', required: true, placeholder: true %>
+            <% end %>
+          </div>
 
-        <div class="form-group">
-          <%= f.email_field :email, class: 'form-control', required: true, placeholder: true %>
-        </div>
+          <div class="form-group">
+            <%= f.email_field :email, class: 'form-control', required: true, placeholder: true %>
+          </div>
 
-        <div class="form-group">
-          <% if SpreeContactUs.require_subject %>
-            <%= f.text_field :subject, class: 'form-control', required: true %>
-          <% end %>
-        </div>
+          <div class="form-group">
+            <% if SpreeContactUs.require_subject %>
+              <%= f.text_field :subject, class: 'form-control', required: true %>
+            <% end %>
+          </div>
 
-        <div class="form-group">
-          <%= f.text_area :message, class: 'form-control', rows: 4, required: true, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
-        </div>
+          <div class="form-group">
+            <%= f.text_area :message, class: 'form-control', rows: 4, required: true, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
+          </div>
 
-        <div class="text-center text-lg-left mt-lg-1 mb-4">
-          <%= f.submit Spree.t(:send), title: Spree.t(:send), class: 'btn btn-secondary' %>
-        </div>
-        <%= recaptcha_action('contact') %>
+          <div class="text-center text-lg-left mt-lg-1 mb-4">
+            <%= f.submit Spree.t(:send), title: Spree.t(:send), class: 'btn btn-secondary' %>
+          </div>
+          <%= recaptcha_action('contact') %>
+        <% end %>
+      </div>
+
+        <%= content_for :recaptcha_js do %>
+          <%= include_recaptcha_js %>
+        <% end %>
       <% end %>
-    </div>
   </div>
 </div>
