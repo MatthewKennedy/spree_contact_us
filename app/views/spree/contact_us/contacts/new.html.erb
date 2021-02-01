@@ -2,7 +2,12 @@
   <%= include_recaptcha_js %>
 <% end %>
 
+<%= content_for :head do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+<% end %>
+
 <%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
+
 <div class="container">
   <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
     <% if SpreeContactUs.require_name %>
@@ -16,7 +21,7 @@
     <% end %>
 
     <%= f.text_area :message, class: 'required col-12 mt-3 mb-3', rows: 4, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
-    
+
     <div class="text-center text-lg-left mt-lg-1 mb-4">
       <%= f.submit Spree.t(:send),
             alt: Spree.t(:send),
