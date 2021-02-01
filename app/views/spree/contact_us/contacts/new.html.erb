@@ -1,29 +1,148 @@
 <%= content_for :recaptcha_js do %>
   <%= include_recaptcha_js %>
 <% end %>
-
 <%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
 <div class="container">
-  <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
-    <% if SpreeContactUs.require_name %>
-      <%= f.text_field :name, class: 'required col-12 mt-3 mb-1 mb-lg-2', placeholder: true %>
-    <% end %>
-
-    <%= f.email_field :email, class: 'required col-12 mt-3 mb-1 mb-lg-2', placeholder: true %>
-
-    <% if SpreeContactUs.require_subject %>
-      <%= f.text_field :subject, class: 'required col-12 mt-3 mb-1 mb-lg-2' %>
-    <% end %>
-
-    <%= f.text_area :message, class: 'required col-12 mt-3 mb-3', rows: 4, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
-    
-    <div class="text-center text-lg-left mt-lg-1 mb-4">
-      <%= f.submit Spree.t(:send),
-            alt: Spree.t(:send),
-            id: 'contact_us_contact_submit',
-            title: Spree.t(:send),
-            class: 'btn btn-primary text-uppercase' %>
+  <div class="row my-6">
+    <div class="col-12 col-md-4 d-flex">
+      <div class="py-5 bg-sub w-100 d-flex justify-content-center">
+        <div class="w-75 mx-auto">
+          <h3 class="mt-0 mb-2">World A.B.S <span class="font-weight-light">Support</span></h3>
+          <p>Get direct assistance from our team of support agents.</p>
+        </div>
+      </div>
     </div>
-    <%= recaptcha_action('contact') %>
-  <% end %>
-</div>
+    <div class="col-12 col-md-8 d-flex">
+      <div class="py-5 border-sub w-100 d-flex align-items-center">
+        <div class="w-75 mx-auto">
+          <h3 class="mt-0">
+            How Can We Help?
+          </h3>
+
+          <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
+            <div class="form-group">
+              <% if SpreeContactUs.require_name %>
+                <%= f.text_field :name, class: 'form-control', required: true, placeholder: true %>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <%= f.email_field :email, class: 'form-control', required: true, placeholder: true %>
+            </div>
+
+            <div class="form-group">
+              <% if SpreeContactUs.require_subject %>
+                <%= f.text_field :subject, class: 'form-control', required: true %>
+              <% end %>
+            </div>
+
+            <div class="form-group">
+              <%= f.text_area :message, class: 'form-control', rows: 4, required: true, placeholder: Spree.t('spree_contact_us.message_placeholder') %>
+            </div>
+
+            <div class="text-center text-lg-left mt-lg-1 mb-4">
+              <%= f.submit Spree.t(:send),
+                    alt: Spree.t(:send),
+                    id: 'contact_us_contact_submit',
+                    title: Spree.t(:send),
+                    class: 'btn btn-secondary' %>
+            </div>
+            <%= recaptcha_action('contact') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+ </div>
+
+<div class="row my-6">
+  <div class="col-12 col-md-4">
+  <h3 class="mt-0 mb-2">Chat</h3>
+  </div>
+  <div class="col-12 col-md-8">
+    <p>
+      Get help in real time from a person at World A.B.S support.
+    </p>
+    <button class="btn btn-secondary" href="/products"  aria-disabled="true" disabled>
+      Live chat is currently unavailable
+    </button>
+
+  </div>
+ </div>
+
+<div class="row my-6">
+  <div class="col-12 col-md-4">
+    <h3 class="mt-0">Reach us</h3>
+    <p>
+      You can also reach us using one of the following channels.
+    </p>
+  </div>
+  <div class="col-12 col-md-8">
+  <div class="row mb-3">
+      <div class="col-4 text-secondary">
+        Phone
+      </div>
+      <div class="col-8">
+        <p>
+            Monday - Thursday 10.00 - 20.00 UTC<br>
+            Friday 10.00 - 17.00 UTC<br>
+        Saturday 10.00 - 15.00 UTC<br>
+            Sunday Closed<br>
+        </p>
+    <p>
+            United States: <a href="tel:6106163852" rel="noopener noreferrer nofollow" target="_blank" class="text-secondary">61-0616-3852</a><br>
+      United Kingdom: <a href="tel:01273251331" rel="noopener noreferrer nofollow" target="_blank" class="text-secondary">01273-251-331</a><br>
+            Switzerland: <a href="tel:445853419" rel="noopener noreferrer nofollow" target="_blank" class="text-secondary">44-5853-419</a>
+        </p>
+      </div>
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-4 text-secondary">
+        Mailing address
+      </div>
+      <div class="col-8">
+       <p>
+         <a href="https://www.google.com/maps/place/Bütschwil,+Switzerland/@47.3543901,9.067305,14z/data=!4m2!3m1!1s0x479ac3ad21b4dc39:0xd988fa552280c830" rel="noopener noreferrer nofollow" target="_blank">
+           World A.B.S<br>
+           <span class="text-secondary">
+              BCB, Bachstrasse<br>
+              1CH-9606<br>
+              Bütschwil<br>
+              Switzerland
+           </span>
+         </a>
+        </p>
+      </div>
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-4 text-secondary">
+        Return Address
+      </div>
+      <div class="col-8">
+    <p>
+         <a href="https://www.google.com/maps/place/XTR+Nutrition,+Mantra+House+South+Street,+Keighley+BD21+1SX/@53.862963,-1.911286,17z/data=!4m2!3m1!1s0x487bef3b9e4679dd:0xb9b3c1aaebc95c0c" rel="noopener noreferrer nofollow" target="_blank">
+          XTR Fulfilment Centre<br>
+           <span class="text-secondary">
+              Unit 63 Mantra House<br>
+              South Street<br>
+              Keighley<br>
+              BD21 1SX<br>
+              United Kingdom
+           </span>
+         </a>
+        </p>
+      </div>
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
