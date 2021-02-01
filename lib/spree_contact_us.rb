@@ -1,4 +1,4 @@
-require "new_google_recaptcha_turbo"
+require "turbo_google_recaptcha"
 require "spree_core"
 require "spree_contact_us/engine"
 
