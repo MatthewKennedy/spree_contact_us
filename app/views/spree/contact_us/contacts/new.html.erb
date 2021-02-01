@@ -2,6 +2,10 @@
   <%= include_recaptcha_js %>
 <% end %>
 
+<%= content_for :head do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+<% end %>
+
 <%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
 
 <div class="container">
