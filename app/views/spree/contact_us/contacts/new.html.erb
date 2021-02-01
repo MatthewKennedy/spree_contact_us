@@ -5,6 +5,11 @@
 <%= render partial: 'spree/shared/error_messages', locals: { target: @contact } %>
 
 <div class="container">
+  <div class="row my-3">
+    <div class="col-12">
+      <h1><%= Spree.t('contact_us') %></h1>
+    </div>
+  </div>
   <div class="row mt-4">
     <div class="col-12 col-md-4">
       <% if current_store.customer_support_email.present? %>
@@ -24,13 +29,14 @@
       <% if current_store.address.present? %>
         <div class="my-4">
           <h3><%= Spree.t('address') %></h3>
-          <%= current_store.address %>
+          <strong><%= current_store.name %></strong><br>
+          <%= current_store.address.html_safe %>
         </div>
       <% end %>
     </div>
     <% if current_store.customer_support_email.present? %>
       <div class="col-12 col-md-8 my-4">
-        <h3><%= Spree.t('contact_us') %></h3>
+        <h3><%= Spree.t('send_a_message') %></h3>
         <%= form_for @contact, url: contact_us_path, html: { novalidate: '' } do |f| %>
           <div class="form-group">
             <% if SpreeContactUs.require_name %>
@@ -53,7 +59,7 @@
           </div>
 
           <div class="text-center text-lg-left mt-lg-1 mb-4">
-            <%= f.submit Spree.t(:send), title: Spree.t(:send), class: 'btn btn-secondary' %>
+            <%= f.submit Spree.t(:send), title: Spree.t(:send), class: 'btn btn-secondary col col-md-4' %>
           </div>
           <%= recaptcha_action('contact') %>
         <% end %>
