@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "deface", "~> 1.0"
   s.add_dependency "spree_core", ">= 4.1.0", "< 5.0"
-  s.add_dependency "turbo_google_recaptcha"
+  s.add_dependency "new_google_recaptcha"
 
   s.add_development_dependency "spree_dev_tools"
 end
