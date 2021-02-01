@@ -3,10 +3,10 @@ class Spree::ContactUs::ContactsController < Spree::StoreController
   def create
     @contact = Spree::ContactUs::Contact.new(params[:contact_us_contact])
 
-    if NewGoogleRecaptcha.human?(
+    if TurboGoogleRecaptcha.human?(
       params[:new_google_recaptcha_token],
       "contact",
-      NewGoogleRecaptcha.minimum_score,
+      TurboGoogleRecaptcha.minimum_score,
       @contact
     ) && @contact.save
       if Spree::ContactUs::Config.contact_tracking_message.present?
